@@ -20,7 +20,8 @@ productos_model = Table('productos',
                         Column('categorias_id', Integer, ForeignKey('categorias.id'))
                         )
 
-prodcutos_fotos_model = Table('productos_fotos',
+productos_fotos_model = Table('productos_fotos',
+                        meta,
                         Column('id', Integer, primary_key=True),
                         Column('nombre', String(100), nullable=False),
                         Column('productos_id', Integer, ForeignKey('productos.id'))

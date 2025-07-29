@@ -3,9 +3,20 @@ from typing import Optional
 
 
 class CategoriaEsquema(BaseModel):
-    id:Optional[int]
+    id: Optional[int] = None
     nombre: str
-    slug: Optional[str]
+    slug: Optional[str] = None
+
+    class Config:
+        schema_extra={
+            "ejemplo": {
+                "nombre": "Categoria 1",  
+            }
+        }
+
+
+class CategoriaCrearEsquema(BaseModel):
+    nombre: str
 
     class Config:
         schema_extra={
@@ -37,6 +48,11 @@ class ProductosFotoEsquema(BaseModel):
     id: Optional[str]
     nombre: str
     productos_id: int
+
+
+class ResponseEsquema(BaseModel):
+    mensaje: str
+
 
 class LoginEsquema(BaseModel):
     correo: str

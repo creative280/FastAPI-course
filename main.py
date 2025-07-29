@@ -1,7 +1,13 @@
 from fastapi import FastAPI, Form
 from pydantic import BaseModel
+from api import api
 
 app = FastAPI()
+
+# Incluir el router de api.py
+app.include_router(api)
+
+
 
 
 @app.get("/ejemplo")
@@ -22,9 +28,9 @@ async def ejmeplo_post(correo: str=Form(), password:str=Form()):
     return {"Correo": correo, "Password": password}
 
 
-@app.post("/ejemplo-request")
-async def ejmeplo_request(model:LoginEsquema):
-    return model
+# @app.post("/ejemplo-request")
+# async def ejmeplo_request(model:LoginEsquema):
+#    return model
 
 
 @app.put("/ejemplo")
