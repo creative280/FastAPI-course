@@ -4,11 +4,6 @@ from pydantic import BaseModel
 app = FastAPI()
 
 
-class LoginEsquema(BaseModel):
-    correo: str
-    password: str
-
-
 @app.get("/ejemplo")
 async def ejemplo():
     return "Metodo GET"
