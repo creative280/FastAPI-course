@@ -8,7 +8,7 @@ class CategoriaEsquema(BaseModel):
     slug: Optional[str] = None
 
     class Config:
-        schema_extra={
+        json_schema_extra={
             "ejemplo": {
                 "nombre": "Categoria 1",  
             }
@@ -19,7 +19,7 @@ class CategoriaCrearEsquema(BaseModel):
     nombre: str
 
     class Config:
-        schema_extra={
+        json_schema_extra={
             "ejemplo": {
                 "nombre": "Categoria 1",  
             }
@@ -35,7 +35,7 @@ class ProductoEsquema(BaseModel):
     categorias_id: int
 
     class Config:
-        schema_extra={
+        json_schema_extra={
             "ejemplo": {
                 "nombre": "Producto_Prueba",
                 "descripcion": "Descripcion Producto Prueba",
@@ -59,7 +59,7 @@ class LoginEsquema(BaseModel):
     password: str
 
     class Config:
-        schema_extra={
+        json_schema_extra={
             "Ejemplo":{
                 "correo": "Prueba@gmail.com",
                 "password": "123456"
