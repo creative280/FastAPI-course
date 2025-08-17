@@ -8,8 +8,6 @@ app = FastAPI()
 app.include_router(api)
 
 
-
-
 @app.get("/ejemplo")
 async def ejemplo():
     return "Metodo GET"

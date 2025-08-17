@@ -45,7 +45,7 @@ class ProductoEsquema(BaseModel):
         }
 
 class ProductosFotoEsquema(BaseModel):
-    id: Optional[str]
+    id: Optional[int]
     nombre: str
     productos_id: int
 
