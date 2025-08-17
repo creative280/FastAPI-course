@@ -1,3 +1,4 @@
+import stat
 from database import conectar
 from fastapi import APIRouter, status, HTTPException, UploadFile, File, Form
 from fastapi.responses import FileResponse
@@ -181,3 +182,37 @@ async def productos_fotos_delete(id:int):
         return {"mensaje": "Se Elimino correctamente el registro"}
     else:
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Sin Resultado en las fotos.")
+
+
+
+# ================================ PERFILES ================================
+
+
+@api.get("/perfiles", response_model=List[PerfilEsquema], status_code=status.HTTP_200_OK)
+async def perfiles():
+    return conectar.execute(perfil_model.select().order_by(perfil_model.c.id.desc())).fetchall()
+
+
+@api.get("/perfiles/{id}", response_model=PerfilEsquema, status_code=status.HTTP_200_OK)
+async def perfiles_get(id: int):
+    datos = conectar.execute(perfil_model.select().where(perfil_model.c.id==id)).first()
+    if datos:
+        return datos
+    else:
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Sin Resultados.")
+        
+
+@api.post("/perfiles", response_model=ResponseEsquema, status_code=status.HTTP_201_CREATED)
+async def perfiles_post(model:PerfilEsquema):
+    try:
+        conectar.execute(perfil_model.insert().values({"nombre": model.nombre}))
+        # conectar.commit()
+        # conectar.close()
+        return {"mensaje": "Se creo el registro correctamente"}
+    except:
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Sin Resultados.")
+
+
+
+
+# ================================ USUARIOS ================================

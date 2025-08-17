@@ -1,5 +1,6 @@
 from pydantic import BaseModel
 from typing import Optional
+from datetime import date
 
 
 class CategoriaEsquema(BaseModel):
@@ -27,7 +28,7 @@ class CategoriaCrearEsquema(BaseModel):
 
 
 class ProductoEsquema(BaseModel):
-    id:Optional[int]
+    id: Optional[int]
     nombre: str
     slug: Optional[str]
     descripcion: str
@@ -63,5 +64,35 @@ class LoginEsquema(BaseModel):
             "Ejemplo":{
                 "correo": "Prueba@gmail.com",
                 "password": "123456"
+            }
+        }
+
+
+class PerfilEsquema(BaseModel):
+    id: Optional[int] = None
+    nombre: str
+
+    class Config:
+        schema_extra= {
+            "ejemplo": {
+                "nombre": "John Doe",
+            }
+        }
+
+class UsuarioEsquema(BaseModel):
+    id: Optional[int]
+    nombre: str
+    correo: str
+    contraseña: str
+    fecha: Optional[date]
+    perfil_id: int
+
+    class Config:
+        schema_extra = {
+            "ejemplo": {
+                "nombre": "John Doe",
+                "correo": "correotest@test.com",
+                "contraseña": "123456",
+                "perfil_id": 1,
             }
         }
